@@ -1,0 +1,172 @@
+/* basic */
+body {
+	background: #e7e7e7;
+	color: #2c2c2c;
+	font-family: "Microsoft JhengHei", sans-serif;
+	padding: 0 150px;
+}
+
+a {
+	color: #2c2c2c;
+	text-decoration: none;
+}
+
+
+/* nav */
+nav {
+	left: 60px;
+	position: fixed;
+	top: 60px;
+	width: 90px;
+}
+nav ul {
+	margin: 0;
+	padding: 0;
+}
+nav ul li {
+	box-shadow: -3px 3px 1px rgba(130, 130, 130, 0.5);
+	list-style: none;
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+nav ul li a {
+	display: block;
+	font-size: 20px;
+	line-height: 35px;
+	height: 35px;
+	padding: 10px;
+}
+nav ul li:hover a {
+	background: #0065ac;
+	box-shadow: -3px 3px 1px rgba(130, 130, 130, 0.7);
+	color: white;
+}
+
+/* section */
+#wrapper {
+	background: #fff;
+	width: 100%;
+}
+
+#sec-profile {
+	box-shadow: 1px 0 1px #2c2c2c;
+	height: 100%;
+	padding-top: 150px;
+	position: fixed;
+	text-align: center;
+	width: 350px;
+}
+
+#sec-profile #avatar {
+	border-radius: 50%;
+	height: 300px;
+	margin: 0 auto;
+	overflow: hidden;
+	width: 300px;
+}
+#sec-profile #avatar img {
+	display: block;
+	left: -35px;
+	position: relative;
+	top: -70px;
+	width: 350px;
+}
+
+#sec-profile #links {
+	margin-top: 50px;
+}
+#sec-profile #links a {
+	border: 3px solid #2c2c2c;
+	border-radius: 25%;
+	display: inline-block;
+	margin: 0 10px;
+	padding: 5px;
+	width: 48px;
+}
+#sec-profile #links a:hover {
+	border-color: rgba(130, 130, 130, 0.7);
+	color: rgba(130, 130, 130, 0.7);
+}
+
+#sec-main {
+	margin-left: 350px;
+	height: 2000px;
+}
+
+@media screen and (max-width: 1440px) {
+	body {
+		padding: 0 50px;
+	}
+
+	nav {
+		left: 0;
+		position: relative;
+		top: 30px;
+		width: 100%;
+	}
+	nav ul li {
+		box-shadow: 0 0 0;
+	}
+	nav ul li a{
+		padding: 5px;
+	}
+
+	#sec-profile {
+		padding-top: 30px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	body {
+		padding: 0;
+	}
+
+	#sec-profile {
+		width: 300px;
+	}
+	#sec-profile #avatar {
+		height: 250px;
+		width: 250px;
+	}
+	#sec-profile #avatar img {
+		width: 300px;
+	}
+	#sec-profile #links {
+		margin-top: 20px;
+	}
+	#sec-profile #links a {
+		font-size: 10px;
+		width: 30px;
+	}
+
+	#sec-main {
+		margin-left: 300px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	nav {
+		background: rgba(240, 240, 240, 1);
+		position: fixed;
+		top: 0px;
+	}
+	nav ul li {
+		display: inline-block;
+	}
+	nav ul li a {
+		font-size: 16px;
+	}
+	section {
+		display: block;
+	}
+
+	#sec-profile {
+		padding: 60px 0 0 0;
+		position: inherit;
+		width: 100%;
+	}
+
+	#sec-main {
+		margin: 0;
+	}
+}
