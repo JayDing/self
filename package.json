@@ -1,0 +1,23 @@
+{
+  "name": "resume-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JayDing/self.git"
+  },
+  "keywords": [
+    "resume"
+  ],
+  "author": "JayDing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JayDing/self/issues"
+  },
+  "homepage": "https://github.com/JayDing/self#readme",
+  "dependencies": {}
+}

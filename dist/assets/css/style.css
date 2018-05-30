@@ -1,0 +1,417 @@
+/* basic */
+body {
+	background: #C9CAC2;
+	color: #3e3e3e;
+	font-family: "Microsoft JhengHei", sans-serif;
+	padding: 0 150px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #3e3e3e;
+	text-decoration: none;
+}
+
+ul, li {
+	margin: 0;
+}
+nav
+section,
+article {
+	box-sizing: border-box;
+}
+
+
+/* nav */
+nav {
+	left: 60px;
+	position: fixed;
+	top: 150px;
+	width: 90px;
+}
+nav > ul {
+	padding: 0;
+}
+nav > ul > li {
+	list-style: none;
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+nav > ul > li#home {
+	display: none;
+}
+nav > ul > li > a {
+	display: block;
+	font-size: 20px;
+	line-height: 35px;
+	height: 35px;
+	padding: 10px;
+}
+nav >  ul > li > a.active {
+	background: #0065ac;
+	box-shadow: -1px 1px 1px 1px rgba(130, 130, 130, 0.5);
+	color: white;
+}
+
+
+/* section */
+#wrapper {
+	background: #fff;
+	box-shadow: 0 0 3px 3px rgba(130, 130, 130, 0.5);
+	width: 100%;
+}
+
+
+#sec-profile {
+	background: #d9efea;
+	border-right: 2px dotted #3e3e3e;
+	height: 100%;
+	overflow-y: auto;
+	padding-top: 150px;
+	position: fixed;
+	text-align: center;
+	width: 350px;
+}
+
+#sec-profile::-webkit-scrollbar {
+    width: 5px;
+}
+#sec-profile::-webkit-scrollbar-thumb {
+	background: rgba(130, 130, 130, 0.5);
+}
+#sec-profile::-webkit-scrollbar-track {
+    background: #d9efea;
+}
+
+#sec-profile > #avatar {
+	border-radius: 50%;
+	height: 300px;
+	margin: 0 auto;
+	overflow: hidden;
+	width: 300px;
+}
+#sec-profile > #avatar > img {
+	display: block;
+	left: -35px;
+	position: relative;
+	top: -70px;
+	width: 350px;
+}
+
+#sec-profile > h1,
+#sec-profile > h3 {
+	padding: 20px;
+}
+
+#sec-profile > #links {
+	margin-top: 50px;
+}
+#sec-profile > #links > a {
+	border: 3px solid #3e3e3e;
+	border-radius: 25%;
+	display: inline-block;
+	margin: 0 10px;
+	padding: 5px;
+	width: 48px;
+}
+#sec-profile > #links > a:hover {
+	border-color: #000;
+	color: #000;
+}
+
+
+#sec-main {
+	padding-left: 350px;
+}
+
+#sec-main > .block {
+	min-height: 500px;
+	padding: 42px 30px;
+}
+
+#sec-main > .block > .sub-text,
+#sec-main > .block > article,
+#sec-main > .block > article > p {
+	padding-left: 30px;
+}
+
+#sec-main > .block > .title {
+	font-size: 32px;
+	margin-bottom: 30px;
+}
+#sec-main > .block > .title::after {
+	content: "";
+	display: block;
+	height: 8px;
+	width: 60px;
+}
+
+#sec-main > .block > .sub-text {
+	font-weight: 700;
+	text-indent: 30px;
+}
+
+#sec-main > .block > article {
+	padding-top: 30px;
+}
+#sec-main > .block > article > .header > i {
+	color: #828282;
+}
+
+
+#sec-main #about > .title::after{
+	background: #7aaffe;
+}
+
+
+#sec-main #skills > .title::after{
+	background: #cfaffe;
+}
+
+#sec-main #skills > article {
+	display: inline-block;
+	padding-right: 30px;
+}
+#sec-main #skills > article > .skill {
+	display: inline-block;
+	margin: 30px 15px;
+	min-height: : 90px;
+	text-align: center;
+}
+#sec-main #skills > article > .skill > img {
+	max-width: 64px;
+}
+#sec-main #skills > article > .skill > h3 {
+	margin: 5px 0;
+}
+
+
+#sec-main #works > .title::after{
+	background: #afffce;
+}
+
+#sec-main #works > article > ul > li {
+	line-height: 36px;
+	list-style: square;
+	min-height: 36px;
+}
+#sec-main #works > article > ul > li > a {
+	border-bottom: 1px dotted #3e3e3e;
+	font-size: 20px;
+}
+#sec-main #works > article > ul > li > a:hover {
+	color: rgba(130, 130, 130, 0.5);
+}
+
+
+/* tooltip */
+.tooltip {
+	cursor: pointer;
+	position: relative;
+}
+
+.tooltip .tooltip-text {
+	background: #3e3e3e;
+	border-radius: 5px;
+	box-sizing: border-box;
+	color: #fff;
+	left: -78px;
+	padding: 10px;
+	position: absolute;
+	text-align: center;
+	top: 125%;
+	visibility: hidden;
+	width: 220px;
+	z-index: 999;
+}
+.tooltip .tooltip-text::after {
+	border-color: transparent transparent #3e3e3e transparent;
+	border-style: solid;
+	border-width: 10px;
+	content: "";
+	left: 97.5px;
+	position: absolute;
+	top: -20px;
+}
+
+.tooltip:hover .tooltip-text {
+	visibility: visible;
+}
+
+
+/* accordion */
+.accordion-toggle {
+	cursor: pointer;
+}
+
+.accordion-toggle.active {
+	color: rgba(130, 130, 130, 0.5) !important;
+	border-bottom: 1px dotted rgba(130, 130, 130, 0.5) !important;
+}
+
+.accordion-target * {
+	max-width: 350px;
+}
+
+.accordion-toggle + .accordion-target {
+	box-shadow: 2px 2px 2px 2px rgba(130, 130, 130, 0.5);
+	box-sizing: border-box;
+	height: 0;
+	overflow: hidden;
+	text-align: center;
+	transform: scaleY(0);
+	transform-origin: 0 top;
+	transition: height .5s ease, transform .5s ease, visibility .5s ease;
+	visibility: hidden;
+}
+
+.accordion-toggle.active + .accordion-target {
+	height: auto;
+	transform: scaleY(1);
+	visibility: visible;
+}
+
+
+@media screen and (max-width: 1440px) {
+	/* basic */
+	body {
+		padding: 0 50px;
+	}
+
+
+	/* nav */
+	nav {
+		left: 0;
+		margin-bottom: 50px;
+		position: relative;
+		top: 30px;
+		width: 100%;
+	}
+	nav > ul > li {
+		margin: 0
+	}
+	nav > ul > li > a{
+		padding: 5px;
+	}
+
+
+	/* section */
+	#sec-profile {
+		padding-top: 30px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	/* basic */
+	body {
+		padding: 0;
+	}
+
+
+	/* section*/
+	#sec-profile {
+		width: 300px;
+	}
+
+	#sec-profile > #avatar {
+		height: 250px;
+		width: 250px;
+	}
+	#sec-profile > #avatar > img {
+		width: 300px;
+	}
+
+	#sec-profile > #links {
+		margin-top: 20px;
+	}
+	#sec-profile > #links > a {
+		font-size: 10px;
+		width: 30px;
+	}
+
+
+	#sec-main {
+		padding-left: 300px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	/* nav */
+	nav {
+		background: rgba(217,239,234, 0.8); /* rgba(169, 200, 255, 0.9) */
+		box-shadow: 0 0 2px 2px rgba(130, 130, 130, 0.5);
+		margin-bottom: 0;
+		position: fixed;
+		top: 0px;
+		z-index: 999;
+	}
+	nav > ul > li {
+		display: inline-block;
+	}
+	nav > ul > li#home {
+		display: inline-block;
+	}
+	nav > ul > li > a {
+		font-size: 16px;
+		height: 32px;
+		line-height: 32px;
+		padding: 5px 10px;
+	}
+	nav > ul > li > a.active {
+		box-shadow: 0 0 0 0;
+	}
+
+
+	/* section */
+	section {
+		display: block !important;
+		height: auto !important;
+	}
+
+	#sec-profile {
+		border: 0;
+		box-sizing: border-box;
+		overflow-y: unset;
+		padding: 90px 10px 30px 10px;
+		position: inherit;
+		width: 100%;
+	}
+
+	#sec-main {
+		padding: 0;
+	}
+	#sec-main > .block {
+		min-height: calc(100% - 42px);
+		padding: 42px 10px;
+	}
+	#sec-main > .block > .sub-text,
+	#sec-main > .block > article,
+	#sec-main > .block > article > p {
+		padding-left: 10px;
+	}
+	#sec-main > #skills > article {
+		display: block;
+		padding-right: 0;
+	}
+	#sec-main > #skills > article > .skill {
+		margin: 30px 0 0 -4px;
+		width: 50%;
+	}
+
+
+	/* tooltip */
+	.tooltip .tooltip-text {
+		left: -87px;
+		top: 140%;
+	}
+
+
+	/* accordion */
+	.accordion .target * {
+		max-width: 90%;
+	}
+}
