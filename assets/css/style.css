@@ -385,7 +385,7 @@ nav >  ul > li > a.active {
 		padding: 0;
 	}
 	#sec-main > .block {
-		min-height: calc(100% - 42px);
+		min-height: calc(100% - 84px);
 		padding: 42px 10px;
 	}
 	#sec-main > .block > .sub-text,

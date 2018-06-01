@@ -11,6 +11,4 @@ $ cd self
 $ node index.js
 ```
 
-index default path: `dist/index.html`
-
 DEMO: https://jayding.github.com/self

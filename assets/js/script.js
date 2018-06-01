@@ -1,4 +1,4 @@
-(function() {
+(function(window, document, navigator) {
 	const getScrollTop = () => {
 		return window.pageYOffset
 			|| document.documentElement.scrollTop
@@ -16,10 +16,7 @@
 		return testExp.test(navigator.userAgent);
 	}
 
-	const isiOS = () => {
-		const testExp = new RegExp('iPhone|iPad', 'i');
-		return testExp.test(navigator.userAgent);
-	}
+
 
 	const isPageLink = (el) => {
 		let pageUrl = window.location.hash ? stripHash(location.href) : window.location.href;
@@ -37,9 +34,9 @@
 
 	const navActive = (target) => {
 		const nav = document.querySelector(target);
-		const navLinks = nav.querySelectorAll('a');
 
 		function detectScrollTop () {
+			const navLinks = nav.querySelectorAll('a');
 			let scrollTop = getScrollTop();
 			let offset = (isMobile() || window.innerWidth <= 640) ? 42 : Math.round(window.innerHeight * 0.4);
 			let detectLine = scrollTop + offset;
@@ -65,59 +62,132 @@
 		detectScrollTop();
 	}
 
-	const copyText = (target) => {
-		const btnCopy = document.querySelectorAll(target);
+	const smoothScroll = (target) => {
+		// ref: https://github.com/cferdinandi/smooth-scroll/blob/master/dist/smooth-scroll.js
+		const header = document.querySelector(target);
+		const scrollTrigger = header.querySelectorAll('a');
 
-		btnCopy.forEach((item) => {
-			item.onclick = (e) => {
-				let textArea, range, selection, msg;
-				
-				textArea = document.createElement('textArea');
-				textArea.value = e.currentTarget.dataset.copyText;
+		function smoothScrollTo(e) {
+			const anchor = document.querySelector(e.currentTarget.hash);
+			let duration = 500;
+			let frame = 40;
+			let startY = getScrollTop();
+			let endY = anchor.offsetTop;
+			let distance = endY - startY;
+			let step = Math.round(distance / duration) * frame;
+			let next = startY + step;
+			let startTime, progress;
 
-				e.currentTarget.appendChild(textArea);
+			function loop(timestamp) {
+				if(!startTime) { startTime = timestamp; }
 
-				if(isiOS()) {
-					range = document.createRange();
-					range.selectNodeContents(textArea);
-
-					selection = window.getSelection();
-					selection.removeAllRanges();
-					selection.addRange(range);
-					
-					textArea.setSelectionRange(0, 999999);
-				} else {
-					textArea.select();
+				if((distance > 0 && next > endY) || (distance < 0 && next < endY)) {
+					next = endY;
 				}
 
-				msg = document.execCommand('copy') ? 'Text copied!' : 'Unable to copy!';
-				e.currentTarget.removeChild(textArea);
+				window.scrollTo(0, next);
 
-				alert(msg);
+				if(getScrollTop() == endY) { 
+					return; 
+				} else {
+					next += step;
+				}
+
+				progress = timestamp - startTime;
+				if(progress < duration) {
+					window.requestAnimationFrame(loop);
+				}
 			}
+
+			e.preventDefault();
+			window.requestAnimationFrame(loop);
+		}
+
+		Array.from(scrollTrigger)
+			.filter(isPageLink && hashExist)
+			.forEach((item) => {
+				item.onclick = smoothScrollTo;
+			});
+	}
+
+	const copyText = (target) => {
+		const btnCopy = document.querySelectorAll(target);
+		let textArea, range, selection, msg;
+
+		function createTextContainer(text) {
+			textArea = document.createElement('textArea');
+			textArea.style = "position: absolute; top: -99999px;  left: -99999px;"
+			textArea.value = text;
+
+			document.body.appendChild(textArea);
+		}
+		
+		function isiOS() {
+			const testExp = new RegExp('iPhone|iPad', 'i');
+			return testExp.test(navigator.userAgent);
+		}
+
+		function textSelect() {
+			if(isiOS()) {
+				range = document.createRange();
+				range.selectNodeContents(textArea);
+
+				selection = window.getSelection();
+				selection.removeAllRanges();
+				selection.addRange(range);
+				
+				textArea.setSelectionRange(0, 999999);
+			} else {
+				textArea.select();
+			}
+		}
+
+		function exexCopy() {
+			msg = document.execCommand('copy') ? 'Text copied!' : 'Unable to copy!';
+			document.body.removeChild(textArea);
+			alert(msg);
+		}
+
+		function clickHandle(e) {
+			let copyText = e.currentTarget.dataset.copyText;
+
+			e.preventDefault();
+			createTextContainer(copyText);
+			textSelect();
+			exexCopy();
+		}
+
+		btnCopy.forEach((item) => {
+			item.onclick = clickHandle;
 		});
 	}
 
 	const accordion = (target) => {
 		const btnAccordionToggle = document.querySelectorAll(target);
 
+		function toggleActive(e) {
+			e.preventDefault();
+
+			if(e.currentTarget.classList.contains('active')) {
+				e.currentTarget.classList.remove('active');
+			} else {
+				e.currentTarget.classList.add('active');
+			}
+		}
+
 		btnAccordionToggle.forEach((item) =>  {
-			item.onclick = (e) => {
-				if(e.currentTarget.classList.contains('active')) {
-					e.currentTarget.classList.remove('active');
-				} else {
-					e.currentTarget.classList.add('active');
-				}
-			};
+			item.onclick = toggleActive;
 		});
 	}
 
 	const init = () => {
 		navActive('#sec-profile nav');
+		smoothScroll('.smooth-scroll');
+
 		copyText('.copy');
 		accordion('.accordion-toggle');
 	}
 
 	init();
 
-})();
+})(window, document, navigator);
