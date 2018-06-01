@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const config = {
-	root: 'dist',
+	root: '.',
 	default: 'index.html',
 	port: process.env.PORT || 3000,
 	mime: {
